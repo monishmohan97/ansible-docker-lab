@@ -17,6 +17,8 @@
       copy:
         content: |
           Information about the target host:
-
+          Hostname: {{ansible_hostname}}
+          OS_kerne_version: {{ansible_kernel_version}}
+          Memory:{{ansible_memory_mb.nocache}}
         dest: "{{directory_name}}/info {{ansible_hostname}}.txt"
       delegate_to: localhost
