@@ -1,0 +1,7 @@
+---
+- name: My first playbook
+  hosts: all
+  tasks:
+    - name: Ping all server
+      ansible.builtin.ping:
+        data: "hi there!"
