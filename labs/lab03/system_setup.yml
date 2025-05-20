@@ -1,0 +1,47 @@
+---
+- name: System setup on all hosts
+  hosts: all
+  become: yes
+
+  vars:
+    new_user: ansible  # Replace with desired username
+
+  tasks:
+    - name: Update package cache
+      apk:
+        update_cache: yes
+
+    - name: Install essential system packages on Alpine
+      apk:
+        name:
+          - vim
+          - curl
+          - wget
+          - htop
+          - tcpdump
+        state: present
+
+    - name: Create a standard user account
+      user:
+        name: "{{ new_user }}"
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        state: present
+
+    - name: Set timezone to UTC
+      timezone:
+        name: UTC
+
+    - name: Configure system limits for open files and processes
+      copy:
+        dest: /etc/security/limits.d/99-custom-limits.conf
+        content: |
+          * soft nofile 65535
+          * hard nofile 65535
+          * soft nproc 65535
+          * hard nproc 65535
+
+    - name: Ensure limits are applied (if needed, restart can be required)
+      command: sysctl -p
+      when: ansible_os_family == 'Debian'
