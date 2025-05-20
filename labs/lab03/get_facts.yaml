@@ -1,0 +1,22 @@
+---
+
+- name: Gather and save target host info
+  hosts: all
+  gather_facts: true
+  vars:
+    directory_name: facts
+  tasks:
+    - name: CREATE FOLDER FOR COLLLECTING FACTS
+      file:
+        name: "{{directory_name}}"
+        state: directory
+      delegate_to: localhost
+      run_once: true
+    
+    - name: SAVE FILE IN LOCAL FILE
+      copy:
+        content: |
+          Information about the target host:
+
+        dest: "{{directory_name}}/info {{ansible_hostname}}.txt"
+      delegate_to: localhost
