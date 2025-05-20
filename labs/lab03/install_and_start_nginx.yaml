@@ -1,16 +1,13 @@
----
-- name: Nginx server setup
-  hosts: webservers
-  become: yes
-
+- name: My first playbook
+  hosts: web_servers
   tasks:
     - name: install nginx server
       apk:
         name: nginx
         state: present
         update_cache: yes
-    - name: start nginx server
-      service: 
+    - name: start nginx
+      service:
         name: nginx
         state: started
         enabled: true
