@@ -1,0 +1,8 @@
+group_names:
+      - developers
+      - testers
+      - admins
+users:
+      - {name: monish, group:'developers,admins' , shell: '/bin/bash'}
+      - {name: kasii, group:'developers,testers' , shell: '/bin/bash'}
+      - {name: manu, group:'testers' , shell: '/bin/bash'}

@@ -1,0 +1,25 @@
+---
+- name: create groups and users
+  host: db_servers
+  become: yes
+  vars: 
+    group_names:
+      - developers
+      - testers
+      - admins
+    users:
+      - {name: monish, group:'developers,admins' , shell: '/bin/bash'}
+      - {name: kasii, group:'developers,testers' , shell: '/bin/bash'}
+      - {name: manu, group:'testers' , shell: '/bin/bash'}
+  tasks:
+    - name: create groups
+      group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ group_names }}"
+    - name: create users with groups and shell 
+      loop: "{{users}}"
+      user:
+        name: "{{item.name}}"
+        groups: "{{items.groups}}"
+        shell: "{{item.shell | default ('/bin/sh')}}"
