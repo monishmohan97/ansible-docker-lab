@@ -14,5 +14,5 @@
       loop: "{{users}}"
       user:
         name: "{{item.name}}"
-        groups: "{{items.groups}}"
+        groups: "{{item.groups}}"
         shell: "{{item.shell | default ('/bin/sh')}}"
