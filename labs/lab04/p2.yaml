@@ -1,0 +1,13 @@
+---
+- name: transfer files to the host using copy and template module 
+  hosts: db_servers
+
+  tasks:
+    - name: copy all the files to /root/ansible-docker-lab
+      template:
+        src: /root/ansible-docker-lab/labs/lab04/data.txt.j2
+        dest: /root/ansible-docker-lab/{{item}}.txt
+      loop:
+        - file1
+        - file2
+        - file3

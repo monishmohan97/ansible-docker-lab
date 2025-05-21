@@ -7,9 +7,9 @@
   tasks:
     - name: copy the file to /home/ansible
       copy:
-        src: ./info.txt.j2
-        dest: ./labs/lab04/t1.txt
+        src: /root/ansible-docker-lab/labs/lab04/info.txt.j2
+        dest: /root/ansible-docker-lablabs/lab04/t1.txt
     - name: copy the file to /home/ansible with variable substitution
       template:
-        src: ./info.txt.j2
-        dest: /home/ansible/t2.txt
+        src: /root/ansible-docker-lab/labs/lab04/info.txt.j2
+        dest: /root/ansible-docker-lab/t2.txt
