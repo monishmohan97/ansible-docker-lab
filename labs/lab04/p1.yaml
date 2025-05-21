@@ -1,0 +1,15 @@
+- name: copy the template file to the host
+  hosts: db_servers
+  vars:
+    author_name: Monish
+    author_email: monish.mohanpan@gmail.com
+ 
+  tasks:
+    - name: copy the file to /home/ansible
+      copy:
+        src: ./info.txt.j2
+        dest: ./labs/lab04/t1.txt
+    - name: copy the file to /home/ansible with variable substitution
+      template:
+        src: ./info.txt.j2
+        dest: /home/ansible/t2.txt
