@@ -19,6 +19,6 @@
     src: "files/*.css"
     dest: /var/www/html/index.html
 - name: start and enable nginx server
-  service: nginx 
-  state: started
-  enabled: yes
+  service: 
+    state: started
+    enabled: yes
