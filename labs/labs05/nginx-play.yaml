@@ -1,0 +1,7 @@
+---
+
+- name: Set-up nginx server on all web servers
+  hosts: web_servers 
+  become: yes
+  roles:
+    - roles/nginx-server

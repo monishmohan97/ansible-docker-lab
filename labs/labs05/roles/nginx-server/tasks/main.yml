@@ -9,6 +9,7 @@
   apt:
     name: ngnix
     state: present
+    notify: RRestart nginx
 - name: create the homepage
   template: 
     src: templates/index.html.j2

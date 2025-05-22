@@ -1,2 +1,4 @@
 ---
 # vars file for roles/nginx-server
+
+app_title: My Awesome website
