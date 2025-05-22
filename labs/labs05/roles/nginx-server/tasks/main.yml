@@ -13,12 +13,11 @@
 - name: create the homepage
   template: 
     src: templates/index.html.j2
-    dest: /usr/share/ngninx/html
-
+    dest: /var/www/html/index.html
 - name: copy css files
   copy: 
     src: "files/*.css"
-    dest: /usr/share/nginx/html
+    dest: /var/www/html/index.html
 - name: start and enable nginx server
   service: nginx 
   state: started
