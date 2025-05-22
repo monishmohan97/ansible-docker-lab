@@ -1,0 +1,24 @@
+---
+# tasks file for roles/nginx-server
+
+- name: Update and upgrade package index
+  apt: 
+    update_cache: yes
+    upgrade: yes
+- name: Install nginx server
+  apt:
+    name: ngnix
+    state: present
+- name: create the homepage
+  template: 
+    src: templates/index.html.j2
+    dest: /usr/share/ngninx/html
+
+- name: copy css files
+  copy: 
+    src: files/*.css
+    dest: /usr/share/nginx/html
+- name: start and enable nginx server
+  service: nginx 
+  state: started
+  enabled: yes
