@@ -9,7 +9,7 @@
   apt:
     name: ngnix
     state: present
-    notify: RRestart nginx
+    notify: Restart nginx
 - name: create the homepage
   template: 
     src: templates/index.html.j2
@@ -17,7 +17,7 @@
 
 - name: copy css files
   copy: 
-    src: files/*.css
+    src: "files/*.css"
     dest: /usr/share/nginx/html
 - name: start and enable nginx server
   service: nginx 
